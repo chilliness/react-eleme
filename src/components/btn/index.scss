@@ -1,0 +1,25 @@
+@import '@/common/scss/mixin.scss';
+
+.btn-wrap {
+  font-size: 12px;
+  .btn-handle {
+    @include frow();
+    height: 30px;
+    padding: 0 14px;
+    color: $fswhite;
+    border-radius: 50px;
+    background: $bg00a;
+  }
+  .btn-box {
+    @include frow(space-between);
+    .iconfont {
+      font-size: 30px;
+      color: $fs00a;
+    }
+    .num {
+      @include frow();
+      width: 26px;
+      color: $fs9aa;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import '@/common/scss/mixin.scss';
+
+.icon-wrap {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  background: no-repeat center;
+  background-size: contain;
+  &.small {
+    width: 12px;
+    height: 12px;
+    margin-right: 2px;
+  }
+  &.icon-decrease {
+    background-image: url(./img/decrease.png);
+  }
+  &.icon-discount {
+    background-image: url(./img/discount.png);
+  }
+  &.icon-special {
+    background-image: url(./img/special.png);
+  }
+  &.icon-invoice {
+    background-image: url(./img/invoice.png);
+  }
+  &.icon-guarantee {
+    background-image: url(./img/guarantee.png);
+  }
+}
