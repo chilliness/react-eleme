@@ -15,13 +15,8 @@ Index.defaultProps = {
 
 export default function Index({ type, size }) {
   let handleType = useCallback(() => {
-    let str = 'decrease';
-    // eslint-disable-next-line
+    let str = '';
     switch (type) {
-      case 0:
-        str = 'decrease';
-        break;
-
       case 1:
         str = 'discount';
         break;
@@ -37,6 +32,9 @@ export default function Index({ type, size }) {
       case 4:
         str = 'guarantee';
         break;
+
+      default:
+        str = 'decrease';
     }
 
     return `icon-${str}`;

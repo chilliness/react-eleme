@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { bindLifecycle } from 'react-keep-alive';
 import { observer, inject } from 'mobx-react';
 import classNames from 'classnames';
 import { Icon, Divide, Btn, Toggle } from '@/components';
 import './index.scss';
 
+@bindLifecycle
 @inject('store')
 @observer
 class index extends Component {
@@ -14,7 +16,7 @@ class index extends Component {
     isHasContent: false
   };
 
-  componentDidMount() {
+  componentDidActivate() {
     this.handleInitScroll('scrollLeft');
     this.handleInitScroll('scrollRight');
     this.handleInitScroll('scrollFood');
@@ -29,7 +31,7 @@ class index extends Component {
 
         this[ref].on('scroll', pos => {
           if (!arr.length) {
-            [...this.refs.box.children].forEach(item => arr.push(-item.offsetTop));
+            [...this.refs.listBox.children].forEach(item => arr.push(-item.offsetTop));
             arr.push(-Infinity);
           }
 
@@ -59,7 +61,7 @@ class index extends Component {
   };
 
   handleSelect = index => {
-    let item = this.refs.box.children[index];
+    let item = this.refs.listBox.children[index];
     if (item && this.scrollRight) {
       this.scrollRight.scrollToElement(item, 300);
     }
@@ -127,7 +129,7 @@ class index extends Component {
           </ul>
         </div>
         <div className="right-content" ref="scrollRight">
-          <div className="list-box" ref="box">
+          <div className="list-box" ref="listBox">
             {goods.map((item, index) => (
               <div className="item-box" key={index}>
                 <h3 className="caption">{item.name}</h3>

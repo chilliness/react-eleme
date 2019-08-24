@@ -16,7 +16,7 @@ class index extends Component {
 
   state = { isAjax: false };
 
-  handleCart = (e, food, num) => {
+  handleCart = (num, food, e) => {
     e.stopPropagation();
 
     if (this.state.isAjax) {
@@ -40,10 +40,9 @@ class index extends Component {
 
     // 保证添加购物车动画的顺利执行
     num > 0 && (this.props.store.isAnim = true);
-    this.timerOut = setTimeout(() => {
-      clearTimeout(this.timerOut);
-      this.props.store.isAnim = false;
+    setTimeout(() => {
       this.setState({ isAjax: false });
+      num > 0 && (this.props.store.isAnim = false);
     }, 200);
   };
 
@@ -56,14 +55,14 @@ class index extends Component {
     return (
       <div className="btn-wrap">
         {!food.cartNum ? (
-          <div className="btn-handle" onClick={e => handleCart(e, food, 1)}>
+          <div className="btn-handle" onClick={e => handleCart(1, food, e)}>
             加入购物车
           </div>
         ) : (
           <div className="btn-box">
-            <i className="iconfont icon-reduce" onClick={e => handleCart(e, food, -1)} />
+            <i className="iconfont icon-reduce" onClick={e => handleCart(-1, food, e)} />
             <span className="num">{food.cartNum}</span>
-            <i className="iconfont icon-add" onClick={e => handleCart(e, food, 1)} />
+            <i className="iconfont icon-add" onClick={e => handleCart(1, food, e)} />
           </div>
         )}
       </div>

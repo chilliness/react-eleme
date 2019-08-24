@@ -4,19 +4,14 @@ import './index.scss';
 
 export default {
   $toast({ msg = '', callback = () => {}, duration = 1500 }) {
-    if (this.dom) {
-      return;
-    }
+    let oToast = document.createElement('div');
+    oToast.className = 'toast-wrap';
 
-    this.dom = document.createElement('div');
-    this.dom.className = 'toast-wrap';
+    ReactDOM.render(<div className="text">{msg}</div>, oToast);
+    document.body.appendChild(oToast);
 
-    ReactDOM.render(<div className="text">{msg}</div>, this.dom);
-    document.body.appendChild(this.dom);
-
-    this.dom.timerOut = setTimeout(() => {
-      clearTimeout(this.dom.timerOut);
-      document.body.removeChild(this.dom);
+    setTimeout(() => {
+      document.body.removeChild(oToast);
       callback();
     }, duration);
   }

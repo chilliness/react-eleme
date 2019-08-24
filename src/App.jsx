@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { Provider, KeepAlive } from 'react-keep-alive';
 import { observer, inject } from 'mobx-react';
-import { Goods, Rating, Seller } from './pages';
 import { Nav, Cart, Loading } from './components';
+import Goods from './pages/goods';
+import Rating from './pages/rating';
+import Seller from './pages/seller';
 
 @inject('store')
 @observer
@@ -51,7 +53,6 @@ class App extends Component {
         <Provider include="goods">
           <Nav />
           <Switch>
-            <Redirect from="/" to="/goods" exact />
             <Route path="/goods">
               <KeepAlive name="goods">
                 <Goods />

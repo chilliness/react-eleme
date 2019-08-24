@@ -10,7 +10,7 @@ import './index.scss';
 @observer
 class index extends Component {
   state = {
-    nav: [{ name: '/goods', text: '商品' }, { name: '/rating', text: '评价' }, { name: '/seller', text: '商家' }],
+    navList: [{ url: '/goods', text: '商品' }, { url: '/rating', text: '评价' }, { url: '/seller', text: '商家' }],
     isShow: false
   };
 
@@ -31,7 +31,7 @@ class index extends Component {
       props: {
         store: { seller }
       },
-      state: { nav, isShow }
+      state: { navList, isShow }
     } = this;
 
     return (
@@ -77,8 +77,8 @@ class index extends Component {
           </div>
         </div>
         <div className="nav-bar">
-          {nav.map((item, index) => (
-            <NavLink className="item-box" to={item.name} activeClassName="active" key={index}>
+          {navList.map((item, index) => (
+            <NavLink className="item-box" activeClassName="active" to={item.url} key={index}>
               {item.text}
             </NavLink>
           ))}
