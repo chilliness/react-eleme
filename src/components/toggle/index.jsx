@@ -5,7 +5,7 @@ import './index.scss';
 
 Index.propType = {
   data: PropTypes.object,
-  handleToggle: PropTypes.func
+  emitToggle: PropTypes.func
 };
 
 Index.defaultProps = {
@@ -14,23 +14,23 @@ Index.defaultProps = {
     isHasContent: false,
     list: [{ text: '全部', type: -1, num: 0 }, { text: '满意', type: 1, num: 0 }, { text: '不满意', type: 0, num: 0 }]
   },
-  handleToggle: () => {}
+  emitToggle: () => {}
 };
 
-export default function Index({ data, handleToggle }) {
+export default function Index({ data, emitToggle }) {
   return (
     <div className="toggle-wrap">
       <h3 className="caption">商品评价</h3>
       <ul className="btn-list">
         {data.list.map((item, index) => (
-          <li className={classNames('item-box', { active: item.type === data.nowType })} key={index} onClick={() => handleToggle(data.isHasContent, item.type)}>
+          <li className={classNames('item-box', { active: item.type === data.nowType })} key={index} onClick={() => emitToggle(data.isHasContent, item.type)}>
             <span className="text">{item.text}</span>
             <span>{item.num}</span>
           </li>
         ))}
       </ul>
       <div className="choose-outer">
-        <div className="choose-box" onClick={() => handleToggle(!data.isHasContent, data.nowType)}>
+        <div className="choose-box" onClick={() => emitToggle(!data.isHasContent, data.nowType)}>
           <i className={classNames('iconfont', 'icon-checked', { active: data.isHasContent })} />
           <span>只看有内容的评价</span>
         </div>

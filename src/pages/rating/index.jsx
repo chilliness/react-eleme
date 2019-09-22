@@ -18,7 +18,7 @@ class index extends Component {
 
   handleInitScroll = (ref, config = { scrollY: true, click: true }) => {
     if (!this[ref]) {
-      this[ref] = new this.$BScroll(this.refs[ref], config);
+      this[ref] = new this.$BScroll(this.refs[`${ref}Ref`], config);
     } else {
       this[ref].refresh();
     }
@@ -69,7 +69,7 @@ class index extends Component {
     let ratingList = isHasContent ? arr.filter(item => item.text) : arr;
 
     return (
-      <div className="rating-wrap" ref="scroll">
+      <div className="rating-wrap" ref="scrollRef">
         <div>
           <div className="rating-box">
             <div className="left-box">
@@ -98,7 +98,7 @@ class index extends Component {
           </div>
           <Divide />
           <div className="content-box">
-            <Toggle data={obj} handleToggle={handleToggle} />
+            <Toggle data={obj} emitToggle={handleToggle} />
             <ul className="rating-list">
               {ratingList.map((item, index) => (
                 <li className="item-box" key={index}>

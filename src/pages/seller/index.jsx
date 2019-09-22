@@ -14,7 +14,7 @@ class index extends Component {
 
   handleInitScroll = (ref, config = { scrollY: true, click: true }) => {
     if (!this[ref]) {
-      this[ref] = new this.$BScroll(this.refs[ref], config);
+      this[ref] = new this.$BScroll(this.refs[`${ref}Ref`], config);
     } else {
       this[ref].refresh();
     }
@@ -28,7 +28,7 @@ class index extends Component {
     } = this;
 
     return (
-      <div className="seller-wrap" ref="scroll">
+      <div className="seller-wrap" ref="scrollRef">
         <div>
           <div className="seller-box">
             <div className="top-box">
@@ -85,7 +85,7 @@ class index extends Component {
           <Divide />
           <div className="content-box">
             <h3 className="caption">商家实景</h3>
-            <div className="pic-bar" ref="scrollX">
+            <div className="pic-bar" ref="scrollXRef">
               <ul className="pic-list">
                 {(seller.pics || []).map((item, index) => (
                   <li className="item-box" key={index}>

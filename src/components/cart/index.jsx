@@ -28,7 +28,7 @@ class index extends Component {
 
   handleInitScroll = (ref, config = { scrollY: true, click: true }) => {
     if (!this[ref]) {
-      this[ref] = new this.$BScroll(this.refs[ref], config);
+      this[ref] = new this.$BScroll(this.refs[`${ref}Ref`], config);
     } else {
       this[ref].refresh();
     }
@@ -91,7 +91,7 @@ class index extends Component {
                 清空
               </span>
             </div>
-            <div className="list-outer" ref="scroll">
+            <div className="list-outer" ref="scrollRef">
               <ul className="list-box">
                 {cart.list.map((item, index) => (
                   <li className="item-box" key={index}>

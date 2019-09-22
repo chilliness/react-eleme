@@ -19,7 +19,7 @@ class index extends Component {
   };
 
   handleCount = () => {
-    return [...''.padEnd(this.props.count)];
+    return Array(this.props.count).fill('');
   };
 
   render() {

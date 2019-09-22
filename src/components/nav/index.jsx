@@ -20,7 +20,7 @@ class index extends Component {
 
   handleInitScroll = (ref, config = { scrollY: true, click: true }) => {
     if (!this[ref]) {
-      this[ref] = new this.$BScroll(this.refs[ref], config);
+      this[ref] = new this.$BScroll(this.refs[`${ref}Ref`], config);
     } else {
       this[ref].refresh();
     }
@@ -84,7 +84,7 @@ class index extends Component {
           ))}
         </div>
         <div className={classNames('mark-box', { show: isShow })}>
-          <div className="content-outer" ref="scrollMark">
+          <div className="content-outer" ref="scrollMarkRef">
             <div>
               <h3 className="name">{seller.name}</h3>
               <div className="star-bar">

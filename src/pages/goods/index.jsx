@@ -24,14 +24,14 @@ class index extends Component {
 
   handleInitScroll = (ref, config = { scrollY: true, click: true, probeType: 3 }) => {
     if (!this[ref]) {
-      this[ref] = new this.$BScroll(this.refs[ref], config);
+      this[ref] = new this.$BScroll(this.refs[`${ref}Ref`], config);
 
       if (ref === 'scrollRight') {
         let arr = [];
 
         this[ref].on('scroll', pos => {
           if (!arr.length) {
-            [...this.refs.listBox.children].forEach(item => arr.push(-item.offsetTop));
+            [...this.refs.listBoxRef.children].forEach(item => arr.push(-item.offsetTop));
             arr.push(-Infinity);
           }
 
@@ -61,7 +61,7 @@ class index extends Component {
   };
 
   handleSelect = index => {
-    let item = this.refs.listBox.children[index];
+    let item = this.refs.listBoxRef.children[index];
     if (item && this.scrollRight) {
       this.scrollRight.scrollToElement(item, 300);
     }
@@ -116,7 +116,7 @@ class index extends Component {
 
     return (
       <div className="goods-wrap">
-        <div className="left-content" ref="scrollLeft">
+        <div className="left-content" ref="scrollLeftRef">
           <ul className="list-box">
             {goods.map((item, index) => (
               <li className={classNames('item-box', { active: nowIndex === index })} key={index} onClick={handleSelect.bind(this, index)}>
@@ -128,8 +128,8 @@ class index extends Component {
             ))}
           </ul>
         </div>
-        <div className="right-content" ref="scrollRight">
-          <div className="list-box" ref="listBox">
+        <div className="right-content" ref="scrollRightRef">
+          <div className="list-box" ref="listBoxRef">
             {goods.map((item, index) => (
               <div className="item-box" key={index}>
                 <h3 className="caption">{item.name}</h3>
@@ -164,7 +164,7 @@ class index extends Component {
             ))}
           </div>
         </div>
-        <div className={classNames('food-mark', { show: food.isShow })} ref="scrollFood">
+        <div className={classNames('food-mark', { show: food.isShow })} ref="scrollFoodRef">
           <div>
             {food.image && (
               <div className="pic-box" style={{ backgroundImage: 'url(' + food.image + ')' }}>
@@ -195,7 +195,7 @@ class index extends Component {
             </div>
             <Divide />
             <div className="content-box">
-              <Toggle data={obj} handleToggle={handleToggle} />
+              <Toggle data={obj} emitToggle={handleToggle} />
               <ul className="rating-list">
                 {ratingList.map((item, index) => (
                   <li className="item-box" key={index}>

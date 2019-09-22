@@ -7,6 +7,9 @@ import Goods from './pages/goods';
 import Rating from './pages/rating';
 import Seller from './pages/seller';
 
+// 导入mock数据，npm run build前，请手动注释，否则将使用mock数据
+import './utils/mock';
+
 @inject('store')
 @observer
 class App extends Component {
